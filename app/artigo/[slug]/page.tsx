@@ -155,7 +155,7 @@ function convertMarkdownToHtml(markdown: string): string {
 
   // Converter listas não ordenadas
   html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
-  html = html.replace(/(<li>.*<\/li>)/s, '<ul class="list-disc list-inside mb-4 space-y-1">$1</ul>');
+    html = html.replace(/(<li>[\s\S]*?<\/li>)/gi, '<ul class="list-disc list-inside mb-4 space-y-1">$1</ul>');
 
   // Converter parágrafos
   html = html.replace(/\n\n/g, '</p><p>');
