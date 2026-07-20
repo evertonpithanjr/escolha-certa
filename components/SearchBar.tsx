@@ -23,11 +23,15 @@ export default function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscar artigos..."
-          className="w-48 sm:w-64 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+          className="w-48 sm:w-64 px-4 py-2 text-sm 
+                     bg-white/10 border border-white/20 rounded-lg 
+                     text-white placeholder-white/50
+                     focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
+                     backdrop-blur-sm"
         />
         <Search 
           size={16} 
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-text-muted" 
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70" 
         />
       </div>
     </form>
