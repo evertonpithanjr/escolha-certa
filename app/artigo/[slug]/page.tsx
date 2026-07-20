@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   return {
-    title: `${post.title} | Escolha Certa`,
+    title: `${post.title} | Escolhendo Certo`,
     description: post.excerpt,
   };
 }

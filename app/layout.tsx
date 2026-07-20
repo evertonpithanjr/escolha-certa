@@ -53,7 +53,7 @@ export default function RootLayout({
 
             {/* Copyright e Aviso de Afiliados */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-text-muted">
-              <p>© {new Date().getFullYear()} Escolha Certa. Todos os direitos reservados.</p>
+              <p>© {new Date().getFullYear()} Escolhendo Certo. Todos os direitos reservados.</p>
               <p className="text-xs italic text-gray-400">
                 Alguns links podem ser de afiliados.
               </p>
