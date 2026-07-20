@@ -20,7 +20,7 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
   title: "Escolhendo Certo | Comparativos e Guias de Compra Confiáveis",
   description: "Análises aprofundadas, comparativos honestos e guias de compra para casa inteligente e eletroportáteis.",
-  metadataBase: new URL("https://escolha-certa.vercel.app"), // Vamos mudar isso quando você tiver o domínio .com.br
+  metadataBase: new URL("https://escolha-certa.vercel.app"),
 };
 
 export default function RootLayout({
@@ -33,12 +33,14 @@ export default function RootLayout({
       <body className="bg-background-main text-text-primary font-sans antialiased flex flex-col min-h-screen">
         <Header />
         
-        <main className="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* REMOVIDO: max-w-4xl mx-auto - Agora é full-width! */}
+        <main className="flex-grow w-full px-6 lg:px-12 py-8">
           {children}
         </main>
         
         <footer className="bg-background-subtle border-t border-gray-200 py-12 mt-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* REMOVIDO: max-w-4xl mx-auto - Footer também full-width! */}
+          <div className="px-6 lg:px-12">
             
             {/* Seção Newsletter */}
             <div className="text-center mb-10 pb-10 border-b border-gray-200">
@@ -63,5 +65,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-
 }
