@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Merriweather } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import NewsletterForm from "@/components/NewsletterForm";
 
+// Fonte para o corpo do texto (Leitura confortável)
 const inter = Inter({ 
   subsets: ["latin"], 
   variable: "--font-inter",
   display: "swap",
 });
 
-const merriweather = Merriweather({
-  weight: ["400", "700", "900"],
+// Fonte para Títulos (Tech/Moderno/Geométrico)
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-merriweather",
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -29,17 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${merriweather.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-background-main text-text-primary font-sans antialiased flex flex-col min-h-screen">
         <Header />
         
-        {/* REMOVIDO: max-w-4xl mx-auto - Agora é full-width! */}
         <main className="flex-grow w-full px-6 lg:px-12 py-8">
           {children}
         </main>
         
         <footer className="bg-background-subtle border-t border-gray-200 py-12 mt-12">
-          {/* REMOVIDO: max-w-4xl mx-auto - Footer também full-width! */}
           <div className="px-6 lg:px-12">
             
             {/* Seção Newsletter */}
