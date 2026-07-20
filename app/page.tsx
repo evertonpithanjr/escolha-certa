@@ -1,7 +1,6 @@
 import { getSortedPostsData } from '@/lib/posts';
 import Link from 'next/link';
-import { FileText, Home, Zap, Lightbulb } from 'lucide-react';
-
+import { FileText, Home as HomeIcon, Zap, Lightbulb } from 'lucide-react';
 export default function Home() {
   const allPosts = getSortedPostsData();
 
@@ -9,7 +8,7 @@ export default function Home() {
     { 
       slug: 'casa-inteligente', 
       name: 'Casa Inteligente', 
-      icon: Home,
+      icon: HomeIcon,
       description: 'Dispositivos IoT, automação e assistentes virtuais',
       color: 'bg-blue-50 border-blue-200 hover:border-blue-400'
     },
