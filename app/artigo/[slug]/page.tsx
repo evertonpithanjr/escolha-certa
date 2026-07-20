@@ -1,205 +1,181 @@
-import { getPostData, getSortedPostsData } from '@/lib/posts';
-import { notFound } from 'next/navigation';
+import { getSortedPostsData } from '@/lib/posts';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { FileText, Home, Zap, Lightbulb } from 'lucide-react';
 
-// Gera os paths estáticos para SSG
-export async function generateStaticParams() {
-  const posts = getSortedPostsData();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+export default function Home() {
+  const allPosts = getSortedPostsData();
 
-// Gera metadata para SEO
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = getPostData(slug);
-  if (!post) return {};
-
-  return {
-    title: `${post.title} | Escolhendo Certo`,
-    description: post.excerpt,
-  };
-}
-
-export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = getPostData(slug);
-
-  if (!post) {
-    notFound();
-  }
-
-  // Converter Markdown simples em HTML
-  const contentHtml = convertMarkdownToHtml(post.content);
-
-  // Dados estruturados para SEO
-  const schemaData = post.isComparativo
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        name: post.title,
-        description: post.excerpt,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Echo Dot',
-            url: 'https://amazon.com.br/echo-dot',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Nest Mini',
-            url: 'https://store.google.com',
-          },
-        ],
-      }
-    : {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: post.title,
-        description: post.excerpt,
-        datePublished: post.date,
-        author: {
-          '@type': 'Organization',
-          name: 'Escolha Certa',
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: 'Escolha Certa',
-          url: 'http://localhost:3000',
-        },
-      };
+  // Categorias com ícones
+  const categories = [
+    { 
+      slug: 'casa-inteligente', 
+      name: 'Casa Inteligente', 
+      icon: Home,
+      description: 'Dispositivos IoT, automação e assistentes virtuais',
+      color: 'bg-blue-50 border-blue-200 hover:border-blue-400'
+    },
+    { 
+      slug: 'eletroportateis', 
+      name: 'Eletroportáteis', 
+      icon: Zap,
+      description: 'Reviews e comparativos dos melhores aparelhos',
+      color: 'bg-purple-50 border-purple-200 hover:border-purple-400'
+    },
+    { 
+      slug: 'iluminacao', 
+      name: 'Iluminação', 
+      icon: Lightbulb,
+      description: 'Lâmpadas smart e sistemas de iluminação inteligente',
+      color: 'bg-yellow-50 border-yellow-200 hover:border-yellow-400'
+    },
+  ];
 
   return (
-    <article className="max-w-3xl mx-auto">
-      {/* Dados estruturados JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+    <div className="min-h-screen">
+      {/* HERO SECTION - Full Width */}
+      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white py-20 lg:py-32">
+        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+              Escolhendo Certo
+            </h1>
+            <p className="text-xl lg:text-2xl text-blue-100 mb-8 leading-relaxed">
+              Comparativos honestos e guias de compra para você tomar a melhor decisão. 
+              Casa inteligente e eletroportáteis analisados com profundidade.
+            </p>
+            <div className="flex gap-4">
+              <Link href="/busca" className="btn-primary text-lg px-8 py-4">
+                Explorar Artigos
+              </Link>
+              <Link href="#categorias" className="btn-discreet text-lg px-8 py-4 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                Ver Categorias
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Botão Voltar */}
-      <Link 
-        href="/"
-        className="inline-flex items-center gap-2 text-text-muted hover:text-brand-700 transition-colors mb-8"
-      >
-        <ArrowLeft size={16} />
-        Voltar para home
-      </Link>
+      {/* CATEGORIAS - Grid Horizontal */}
+      <section id="categorias" className="py-16 lg:py-24 bg-gray-50">
+        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+          <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4 text-slate-900">
+            Explore por Categoria
+          </h2>
+          <p className="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
+            Encontre análises detalhadas e comparativos dos produtos que você precisa
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {categories.map((category) => (
+              <Link 
+                key={category.slug}
+                href={`/categoria/${category.slug}`}
+                className={`group block p-8 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl ${category.color}`}
+              >
+                <category.icon className="w-12 h-12 mb-4 text-slate-700 group-hover:scale-110 transition-transform" />
+                <h3 className="text-2xl font-bold mb-3 text-slate-900">
+                  {category.name}
+                </h3>
+                <p className="text-slate-600">
+                  {category.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* Cabeçalho do Artigo */}
-      <header className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-medium text-brand-700 bg-brand-50 px-3 py-1 rounded-full">
-            {post.category}
-          </span>
-          {post.isComparativo && (
-            <span className="text-xs font-medium text-purple-700 bg-purple-50 px-3 py-1 rounded-full">
-              Comparativo
-            </span>
+      {/* ÚLTIMOS ARTIGOS - Full Width */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+            Últimos Artigos
+          </h2>
+          <p className="text-lg text-slate-600 mb-12 max-w-2xl">
+            Análises recentes e comparativos detalhados
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {allPosts.slice(0, 4).map((post) => (
+              <article 
+                key={post.slug}
+                className="card-modern group"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="badge badge-primary">
+                    {post.category}
+                  </span>
+                  {post.isComparativo && (
+                    <span className="badge badge-comparativo">
+                      Comparativo
+                    </span>
+                  )}
+                </div>
+                
+                <Link href={`/artigo/${post.slug}`}>
+                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-blue-700 transition-colors">
+                    {post.title}
+                  </h3>
+                </Link>
+                
+                <p className="text-slate-600 mb-4 line-clamp-3">
+                  {post.excerpt}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <time className="text-sm text-slate-500">
+                    {new Date(post.date).toLocaleDateString('pt-BR', { 
+                      day: '2-digit', 
+                      month: 'long', 
+                      year: 'numeric' 
+                    })}
+                  </time>
+                  
+                  <Link 
+                    href={`/artigo/${post.slug}`}
+                    className="text-blue-600 font-medium hover:text-blue-800 transition-colors inline-flex items-center gap-1"
+                  >
+                    Ler mais →
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {allPosts.length > 4 && (
+            <div className="text-center mt-12">
+              <Link href="/busca" className="btn-discreet text-lg px-8 py-3">
+                Ver todos os artigos
+              </Link>
+            </div>
           )}
         </div>
+      </section>
 
-        <h1 className="text-3xl sm:text-4xl font-bold mb-4">
-          {post.title}
-        </h1>
-
-        <time className="text-text-muted text-sm">
-          {new Date(post.date).toLocaleDateString('pt-BR', { 
-            day: '2-digit', 
-            month: 'long', 
-            year: 'numeric' 
-          })}
-        </time>
-      </header>
-
-      {/* Conteúdo do Artigo */}
-      <div 
-        className="prose prose-slate max-w-none"
-        dangerouslySetInnerHTML={{ __html: contentHtml }}
-      />
-
-      {/* Call to Action Final */}
-      <div className="mt-12 pt-8 border-t border-gray-200">
-        <div className="bg-background-subtle rounded-lg p-6 text-center">
-          <h3 className="text-lg font-bold mb-2">Gostou deste comparativo?</h3>
-          <p className="text-text-secondary mb-4">
-            Compartilhe com quem também precisa tomar essa decisão!
+      {/* NEWSLETTER - Full Width Dark */}
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+        <div className="px-6 lg:px-12 max-w-4xl mx-auto text-center">
+          <div className="mb-6">
+            <FileText className="w-16 h-16 mx-auto mb-4 text-blue-300" />
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Receba nossas melhores análises
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Sem spam. Apenas guias de compra honestos e comparativos direto no seu e-mail.
           </p>
-          <Link href="/" className="btn-primary">
-            Ver mais artigos
-          </Link>
+          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+            <input
+              type="email"
+              placeholder="Seu melhor e-mail"
+              className="flex-1 px-6 py-4 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <button type="submit" className="btn-primary text-lg px-8 py-4 bg-white text-blue-900 hover:bg-blue-50">
+              Inscrever-se
+            </button>
+          </form>
         </div>
-      </div>
-    </article>
+      </section>
+    </div>
   );
-}
-
-// Função para converter Markdown em HTML
-function convertMarkdownToHtml(markdown: string): string {
-  let html = markdown;
-
-  // Converter cabeçalhos
-  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-
-  // Converter negrito
-  html = html.replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>');
-
-  // Converter itálico
-  html = html.replace(/\*(.*)\*/gim, '<em>$1</em>');
-
-  // Converter listas não ordenadas
-  html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
-      html = html.replace(/(<li>[\s\S]*?<\/li>)/gi, '<ul class="list-disc list-inside mb-4 space-y-1">$1</ul>');
-
-  // Converter parágrafos
-  html = html.replace(/\n\n/g, '</p><p>');
-  html = '<p>' + html + '</p>';
-
-  // Limpar tags p vazias
-  html = html.replace(/<p><\/p>/g, '');
-  html = html.replace(/<p>(<h[123]>)/g, '$1');
-  html = html.replace(/(<\/h[123]>)<\/p>/g, '$1');
-  html = html.replace(/<p>(<ul>)/g, '$1');
-  html = html.replace(/(<\/ul>)<\/p>/g, '$1');
-
-  // Converter tabelas
-  html = convertTablesToHtml(html);
-
-  // Converter links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gi, '<a href="$2" target="_blank" class="text-brand-700 underline">$1</a>');
-
-  return html;
-}
-
-// Função para converter tabelas Markdown
-function convertTablesToHtml(html: string): string {
-  const tableRegex = /\|(.+)\|\n\|([\s\-|:]+)\|\n((?:\|.+\|\n?)+)/g;
-  
-  return html.replace(tableRegex, (match: string, header: string, separator: string, rows: string) => {
-    const headers = header.split('|').map((h: string) => h.trim()).filter((h: string) => h);
-    const rowLines = rows.trim().split('\n').filter((r: string) => r);
-    const tableRows = rowLines.map((row: string) => {
-      const cells = row.split('|').map((c: string) => c.trim()).filter((c: string) => c);
-      return `<tr>${cells.map((cell: string) => `<td class="border border-gray-300 px-4 py-2">${cell}</td>`).join('')}</tr>`;
-    }).join('');
-
-    return `
-      <div class="overflow-x-auto my-6">
-        <table class="min-w-full border-collapse border border-gray-300">
-          <thead class="bg-gray-50">
-            <tr>${headers.map((h: string) => `<th class="border border-gray-300 px-4 py-3 text-left font-semibold">${h}</th>`).join('')}</tr>
-          </thead>
-          <tbody>
-            ${tableRows}
-          </tbody>
-        </table>
-      </div>
-    `;
-  });
 }
