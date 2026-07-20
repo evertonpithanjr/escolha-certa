@@ -32,7 +32,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* HERO SECTION */}
       <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white py-20 lg:py-32">
-        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="px-6 lg:px-12">
           <div className="max-w-3xl">
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
               Escolhendo Certo
@@ -55,7 +55,7 @@ export default function Home() {
 
       {/* CATEGORIAS */}
       <section id="categorias" className="py-16 lg:py-24 bg-gray-50">
-        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="px-6 lg:px-12">
           <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4 text-slate-900">
             Explore por Categoria
           </h2>
@@ -85,7 +85,7 @@ export default function Home() {
 
       {/* ÚLTIMOS ARTIGOS */}
       <section className="py-16 lg:py-24 bg-white">
-        <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+        <div className="px-6 lg:px-12">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
             Últimos Artigos
           </h2>
@@ -133,7 +133,7 @@ export default function Home() {
 
       {/* NEWSLETTER */}
       <section className="py-16 lg:py-24 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
-        <div className="px-6 lg:px-12 max-w-4xl mx-auto text-center">
+        <div className="px-6 lg:px-12">
           <div className="mb-6">
             <FileText className="w-16 h-16 mx-auto mb-4 text-blue-300" />
           </div>
