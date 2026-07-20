@@ -51,37 +51,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CATEGORIAS - Com efeito de vidro */}
-      <section id="categorias" className="py-16 lg:py-24">
-        <div className="px-6 lg:px-12">
-          <div className="glass-section">
-            <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4 text-white">
-              Explore por Categoria
-            </h2>
-            <p className="text-lg text-white/80 text-center mb-12 max-w-2xl mx-auto">
-              Encontre análises detalhadas e comparativos dos produtos que você precisa
+  {/* CATEGORIAS */}
+<section id="categorias" className="py-16 lg:py-24">
+  <div className="px-6 lg:px-12">
+    <div className="glass-section">
+      <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4 text-white">
+        Explore por Categoria
+      </h2>
+      <p className="text-lg text-white/80 text-center mb-12 max-w-2xl mx-auto">
+        Encontre análises detalhadas e comparativos dos produtos que você precisa
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {categories.map((category) => (
+          <Link 
+            key={category.slug}
+            href={`/categoria/${category.slug}`}
+            className="glass-card group block p-8 transition-all duration-300 hover:scale-105 hover:bg-white/25 bg-white/15"
+          >
+            <category.icon className="w-12 h-12 mb-4 text-white group-hover:scale-110 transition-transform" />
+            <h3 className="text-2xl font-bold mb-3 text-white">
+              {category.name}
+            </h3>
+            <p className="text-white/90">
+              {category.description}
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {categories.map((category) => (
-                <Link 
-                  key={category.slug}
-                  href={`/categoria/${category.slug}`}
-                  className="glass-card group block p-8 transition-all duration-300 hover:scale-105 hover:bg-white/15"
-                >
-                  <category.icon className="w-12 h-12 mb-4 text-white group-hover:scale-110 transition-transform" />
-                  <h3 className="text-2xl font-bold mb-3 text-white">
-                    {category.name}
-                  </h3>
-                  <p className="text-white/80">
-                    {category.description}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ÚLTIMOS ARTIGOS - Com efeito de vidro */}
       <section className="py-16 lg:py-24">
