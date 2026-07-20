@@ -3,45 +3,45 @@ import SearchBar from './SearchBar';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-purple-950/80 backdrop-blur-xl border-b border-white/10 shadow-lg">
-      <div className="px-6 lg:px-12 h-20 flex items-center justify-between max-w-[1920px] mx-auto">
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+      <header className="bg-purple-950/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl px-6 py-3 flex items-center justify-between gap-4">
         
-        {/* Logo */}
+        {/* Logo / Nome */}
         <Link 
           href="/" 
-          className="text-xl font-bold text-white tracking-tight hover:text-blue-300 transition-colors"
+          className="text-lg font-bold text-white tracking-tight hover:text-blue-300 transition-colors shrink-0"
         >
           Escolhendo Certo
         </Link>
 
-        {/* Links de Navegação */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Categorias */}
+        <nav className="hidden md:flex items-center gap-6">
           <Link 
             href="/categoria/casa-inteligente" 
-            className="text-sm font-medium text-white hover:text-blue-300 transition-colors"
+            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
           >
             Casa Inteligente
           </Link>
           <Link 
             href="/categoria/eletroportateis" 
-            className="text-sm font-medium text-white hover:text-blue-300 transition-colors"
+            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
           >
             Eletroportáteis
           </Link>
           <Link 
             href="/categoria/iluminacao" 
-            className="text-sm font-medium text-white hover:text-blue-300 transition-colors"
+            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
           >
             Iluminação
           </Link>
         </nav>
 
         {/* Barra de Busca */}
-        <div className="w-full max-w-xs">
+        <div className="w-full max-w-[200px] shrink-0">
           <SearchBar />
         </div>
         
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }
