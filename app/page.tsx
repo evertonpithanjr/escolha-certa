@@ -130,21 +130,6 @@ export default function Home() {
           )}
         </div>
       </section>
-
-      {/* NEWSLETTER */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
-        <div className="px-6 lg:px-12">
-          <div className="mb-6">
-            <FileText className="w-16 h-16 mx-auto mb-4 text-blue-300" />
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">Receba nossas melhores análises</h2>
-          <p className="text-xl text-blue-100 mb-8">Sem spam. Apenas guias de compra honestos e comparativos direto no seu e-mail.</p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-            <input type="email" placeholder="Seu melhor e-mail" className="flex-1 px-6 py-4 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-            <button type="submit" className="btn-primary text-lg px-8 py-4 bg-white text-blue-900 hover:bg-blue-50">Inscrever-se</button>
-          </form>
-        </div>
-      </section>
     </div>
   );
 }
