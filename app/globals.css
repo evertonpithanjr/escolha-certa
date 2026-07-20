@@ -23,13 +23,8 @@
     --radius: 0.75rem; /* Bordas mais arredondadas e modernas */
   }
 
-  body {
-    @apply text-slate-900 antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tight text-slate-900;
+    @apply font-sans font-bold tracking-tight text-white;
   }
 
   h1 { @apply text-4xl sm:text-5xl lg:text-6xl; }
@@ -70,6 +65,26 @@
   }
   .badge-comparativo {
     @apply bg-purple-50 text-purple-700 border border-purple-100;
+  }
+
+  /* Efeito Glassmorphism (Vidro Fosco) */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
   }
 }
 
@@ -116,6 +131,8 @@
 }
 
 body {
+  @apply text-white antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
   background: linear-gradient(-45deg, #0f172a, #1e3a8a, #3730a3, #1e40af);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
