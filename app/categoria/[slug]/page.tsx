@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${category.name} | Escolha Certa`,
+    title: `${category.name} | Escolhendo Certo`,
     description: `Todos os artigos, reviews e comparativos sobre ${category.name}.`,
   };
 }
