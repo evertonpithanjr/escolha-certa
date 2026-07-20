@@ -18,9 +18,9 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: "Escolha Certa | Comparativos e Guias de Compra Confiáveis",
+  title: "Escolhendo Certo | Comparativos e Guias de Compra Confiáveis",
   description: "Análises aprofundadas, comparativos honestos e guias de compra para casa inteligente e eletroportáteis.",
-  metadataBase: new URL("https://escolhacerta.vercel.app"),
+  metadataBase: new URL("https://escolha-certa.vercel.app"), // Vamos mudar isso quando você tiver o domínio .com.br
 };
 
 export default function RootLayout({
