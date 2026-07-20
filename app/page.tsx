@@ -8,9 +8,7 @@ export default function Home() {
     <div className="space-y-12">
       {/* Hero Section */}
       <section className="text-center py-12 border-b border-gray-200">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Escolha Certa
-        </h1>
+           <h1 className="text-4xl font-bold text-center mb-4">Escolhendo Certo</h1>
         <p className="text-xl text-text-secondary max-w-2xl mx-auto">
           Comparativos honestos e guias de compra para você tomar a melhor decisão. 
           Casa inteligente e eletroportáteis analisados com profundidade.
