@@ -3,8 +3,13 @@ import SearchBar from './SearchBar';
 
 export default function Header() {
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-      <header className="bg-purple-950/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl px-6 py-3 flex items-center justify-between gap-4">
+    <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl group pt-4">
+      
+      {/* Área invisível que detecta quando o mouse se aproxima do topo */}
+      <div className="absolute -top-4 left-0 right-0 h-12" />
+      
+      {/* Menu flutuante - escondido por padrão, aparece no hover */}
+      <header className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-6 py-3 flex items-center justify-between gap-4 shadow-2xl">
         
         {/* Logo / Nome */}
         <Link 
